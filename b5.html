@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>প্রত্যয়নপত্র - বুজরুক বাগবাড় সরকারি প্রাথমিক বিদ্যালয়</title>
     <style>
+        /* Nikosh ফন্ট যদি পিসিতে না থাকে তবে অনলাইন থেকে Hind Siliguri লোড হবে */
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
 
-        /* প্রিন্ট সেটিংস */
         @page {
             size: A4 landscape;
             margin: 0;
         }
 
         body { 
-            font-family: 'Hind Siliguri', sans-serif; 
+            /* প্রধান ফন্ট হিসেবে Nikosh এবং NikoshBan যুক্ত করা হয়েছে */
+            font-family: 'Nikosh', 'NikoshBan', 'Hind Siliguri', sans-serif; 
             margin: 0; padding: 0; background-color: #f0f2f5;
         }
         
@@ -26,23 +27,20 @@
         }
 
         select { 
-            padding: 10px; border-radius: 5px; font-family: 'Hind Siliguri'; 
+            padding: 10px; border-radius: 5px; font-family: inherit; 
             border: 2px solid #f39c12; min-width: 250px; outline: none;
         }
 
         .btn {
             padding: 10px 25px; color: white; border: none; 
-            cursor: pointer; border-radius: 6px; font-family: 'Hind Siliguri'; 
+            cursor: pointer; border-radius: 6px; font-family: inherit; 
             font-weight: bold; transition: 0.3s;
         }
         .btn-print { background: #27ae60; }
         .btn-all { background: #e67e22; }
 
         #cert-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-bottom: 50px;
+            display: flex; flex-direction: column; align-items: center; padding-bottom: 50px;
         }
 
         .cert-container {
@@ -51,7 +49,7 @@
             background: white;
             margin: 30px auto;
             border: 15px double #b8860b; 
-            padding: 30px 70px; /* প্যাডিং কিছুটা কমানো হয়েছে */
+            padding: 30px 80px;
             box-sizing: border-box;
             position: relative;
             background-image: radial-gradient(#fffdfa, #ffffff);
@@ -60,13 +58,11 @@
             transform-origin: top center;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* এটি কন্টেন্টকে সমানভাবে ভাগ করবে যাতে ফুটার নিচে থাকে */
+            justify-content: space-between;
         }
 
-        /* স্ক্রিন ভিউ জুম */
-        @media screen and (max-width: 1300px) {
-            #cert-area { zoom: 0.7; }
-        }
+        /* স্ক্রিন জুম সেটিংস */
+        @media screen and (max-width: 1300px) { #cert-area { zoom: 0.7; } }
 
         .watermark {
             position: absolute; top: 50%; left: 50%;
@@ -83,29 +79,28 @@
 
         .logo { width: 80px; height: auto; }
         .school-info { text-align: center; flex: 1; }
-        .school-info h2 { margin: 2px 0; font-size: 34px; color: #c0392b; font-weight: 700; }
-        .school-info h4 { margin: 0; font-size: 19px; color: #1a2a6c; }
-        .school-info p { margin: 2px 0; font-size: 15px; font-weight: 600; }
+        .school-info h2 { margin: 2px 0; font-size: 38px; color: #c0392b; font-weight: 700; }
+        .school-info h4 { margin: 0; font-size: 21px; color: #1a2a6c; }
+        .school-info p { margin: 2px 0; font-size: 17px; font-weight: 600; }
 
-        .meta { display: flex; justify-content: space-between; margin: 20px 0; font-size: 19px; font-weight: 600; }
+        .meta { display: flex; justify-content: space-between; margin: 20px 0; font-size: 21px; font-weight: 600; }
         
         .cert-title { text-align: center; margin: 15px 0; }
         .cert-title span { 
             background: #1a2a6c; color: white; padding: 6px 50px; 
-            font-size: 28px; border-radius: 10px; font-weight: bold;
+            font-size: 32px; border-radius: 10px; font-weight: bold;
         }
 
         .main-content { 
-            font-size: 24px; line-height: 2.1; margin-top: 20px; 
+            font-size: 27px; line-height: 2.1; margin-top: 20px; 
             text-align: justify; color: #2c3e50;
         }
 
         .fill { border-bottom: 2px dotted #444; display: inline-block; padding: 0 8px; font-weight: 700; color: #000; }
 
-        /* ফুটার অংশটি যাতে সবসময় নির্দিষ্ট জায়গায় থাকে */
         .footer { 
-            margin-top: auto; /* এটি ফুটারকে কন্টেইনারের একদম নিচে পাঠিয়ে দেবে */
-            padding-bottom: 10px;
+            margin-top: auto; 
+            padding-bottom: 20px;
             display: flex; 
             justify-content: flex-end; 
         }
@@ -122,7 +117,7 @@
                 height: 210mm !important;
                 border: 15px double #b8860b !important;
                 box-shadow: none !important;
-                padding: 30px 70px !important;
+                padding: 30px 80px !important;
             }
         }
     </style>
@@ -204,7 +199,7 @@
             <div class="footer">
                 <div class="sign-box">
                     <div class="line"></div>
-                    <div class="sign-text" style="font-weight: 600; font-size: 17px; color: #1a2a6c;">
+                    <div class="sign-text" style="font-weight: 600; font-size: 19px; color: #1a2a6c;">
                         <strong>(প্রধান শিক্ষক)</strong><br>
                         বুজরুক বাগবাড় সরকারি প্রাথমিক বিদ্যালয়<br>
                         বদরগঞ্জ, রংপুর।

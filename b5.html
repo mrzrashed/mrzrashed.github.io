@@ -23,11 +23,51 @@
         .btn-all { background: #e67e22; }
 
         /* সার্টিফিকেট ডিজাইন */
+        /* সার্টিফিকেট কন্টেইনার আপডেট */
         .cert-container {
-            width: 285mm; height: 195mm; background: white; margin: 30px auto;
-            border: 15px double #b8860b; padding: 40px 70px; box-sizing: border-box;
-            position: relative; background-image: radial-gradient(#fffdfa, #ffffff);
-            page-break-after: always;
+        width: 285mm; 
+        height: 195mm; 
+        background: white;
+        margin: 20px auto; /* মার্জিন একটু কমানো হয়েছে */
+        border: 15px double #b8860b; 
+        padding: 30px 60px; /* প্যাডিং সামঞ্জস্য করা হয়েছে */
+        box-sizing: border-box;
+        position: relative;
+        background-image: radial-gradient(#fffdfa, #ffffff);
+        page-break-after: always;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        
+        /* নিচের লাইনগুলো স্ক্রিন ভিউ ঠিক করবে */
+        transform-origin: top center;
+        }
+        
+        /* স্ক্রিনে দেখার সময় জুম লেভেল ঠিক করার জন্য (প্রিন্টে এটি কাজ করবে না) */
+        @media screen and (max-width: 1200px) {
+        #cert-area {
+            zoom: 0.7; /* স্ক্রিন ছোট হলে সার্টিফিকেট ৭০% ছোট হয়ে দেখাবে যাতে ভেঙে না যায় */
+        }
+        }
+        
+        @media screen and (max-width: 1600px) and (min-width: 1201px) {
+        #cert-area {
+            zoom: 0.85; /* মাঝারি স্ক্রিনে ৮৫% জুম */
+        }
+        }
+        
+        /* প্রিন্ট সেটিংস আগের মতোই থাকবে */
+        @media print {
+        #cert-area {
+            zoom: 1 !important; /* প্রিন্টের সময় কোনো জুম হবে না */
+        }
+        .no-print { display: none; }
+        body { background: white; margin: 0; }
+        .cert-container { 
+            margin: 0 !important; 
+            width: 285mm !important;
+            height: 195mm !important;
+            border: 15px double #b8860b !important;
+            box-shadow: none;
+        }
         }
 
         .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; opacity: 0.05; z-index: 0; }

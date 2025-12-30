@@ -7,7 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
 
-        /* প্রিন্ট সেটিংস */
+        /* প্রিন্ট সেটিংস: A4 Landscape এর জন্য নির্ধারিত */
         @page {
             size: A4 landscape;
             margin: 0;
@@ -18,26 +18,42 @@
             margin: 0; padding: 0; background-color: #f0f2f5;
         }
         
+        /* উপরের নেভিগেশন বার */
         .no-print { 
             background: #1a2a6c; padding: 15px; text-align: center;
             color: white; position: sticky; top: 0; z-index: 1000;
             display: flex; justify-content: center; align-items: center; gap: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        select { padding: 10px; border-radius: 5px; min-width: 250px; outline: none; }
+        select { 
+            padding: 10px; border-radius: 5px; font-family: 'Hind Siliguri'; 
+            border: 2px solid #f39c12; min-width: 250px; outline: none;
+        }
 
-        .btn { padding: 10px 25px; color: white; border: none; cursor: pointer; border-radius: 6px; font-weight: bold; }
+        .btn {
+            padding: 10px 25px; color: white; border: none; 
+            cursor: pointer; border-radius: 6px; font-family: 'Hind Siliguri'; 
+            font-weight: bold; transition: 0.3s;
+        }
         .btn-print { background: #27ae60; }
         .btn-all { background: #e67e22; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
 
-        /* সার্টিফিকেট কন্টেইনার */
-        #cert-area { display: flex; flex-direction: column; align-items: center; }
+        /* সার্টিফিকেট কন্টেইনার এবং স্ক্রিন জুম কন্ট্রোল */
+        #cert-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 50px;
+        }
 
         .cert-container {
-            width: 297mm; /* A4 Landscape width */
-            height: 210mm; /* A4 Landscape height */
+            /* A4 Landscape এর একদম সঠিক মাপ */
+            width: 297mm; 
+            height: 210mm; 
             background: white;
-            margin: 20px auto;
+            margin: 30px auto;
             border: 15px double #b8860b; 
             padding: 40px 80px;
             box-sizing: border-box;
@@ -45,37 +61,61 @@
             background-image: radial-gradient(#fffdfa, #ffffff);
             page-break-after: always;
             box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            transform-origin: top center;
         }
 
-        /* স্ক্রিনে দেখার সময় ডিজাইন ঠিক রাখার জন্য */
-        @media screen and (max-width: 1400px) {
-            #cert-area { zoom: 0.8; }
+        /* বিভিন্ন স্ক্রিন রেজোলিউশনে ডিজাইন ঠিক রাখার জন্য জুম লজিক */
+        @media screen and (max-width: 1300px) {
+            #cert-area { zoom: 0.75; }
         }
-        @media screen and (max-width: 1100px) {
+        @media screen and (max-width: 1000px) {
             #cert-area { zoom: 0.6; }
         }
 
-        .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 4px double #b8860b; padding-bottom: 15px; }
+        /* ভেতরের কন্টেন্ট ডিজাইন */
+        .watermark {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); width: 350px;
+            opacity: 0.05; z-index: 0;
+        }
+
+        .content-wrapper { position: relative; z-index: 1; }
+
+        .header { 
+            display: flex; align-items: center; justify-content: space-between; 
+            margin-bottom: 15px; border-bottom: 4px double #b8860b; padding-bottom: 15px; 
+        }
+
         .logo { width: 85px; height: auto; }
         .school-info { text-align: center; flex: 1; }
-        .school-info h2 { margin: 2px 0; font-size: 36px; color: #c0392b; }
-        
-        .meta { display: flex; justify-content: space-between; margin: 25px 0; font-size: 20px; font-weight: 600; }
-        .cert-title { text-align: center; margin: 25px 0; }
-        .cert-title span { background: #1a2a6c; color: white; padding: 8px 60px; font-size: 30px; border-radius: 10px; }
+        .school-info h2 { margin: 2px 0; font-size: 36px; color: #c0392b; font-weight: 700; }
+        .school-info h4 { margin: 0; font-size: 20px; color: #1a2a6c; }
+        .school-info p { margin: 2px 0; font-size: 16px; font-weight: 600; }
 
-        .main-content { font-size: 25px; line-height: 2.3; margin-top: 30px; text-align: justify; }
+        .meta { display: flex; justify-content: space-between; margin: 25px 0; font-size: 20px; font-weight: 600; }
+        
+        .cert-title { text-align: center; margin: 25px 0; }
+        .cert-title span { 
+            background: #1a2a6c; color: white; padding: 8px 60px; 
+            font-size: 30px; border-radius: 10px; font-weight: bold;
+        }
+
+        .main-content { 
+            font-size: 25px; line-height: 2.3; margin-top: 30px; 
+            text-align: justify; color: #2c3e50;
+        }
+
         .fill { border-bottom: 2px dotted #444; display: inline-block; padding: 0 8px; font-weight: 700; color: #000; }
 
         .footer { margin-top: 60px; display: flex; justify-content: flex-end; }
         .sign-box { text-align: center; width: 300px; }
         .line { border-top: 2.5px solid #1a2a6c; margin-bottom: 5px; }
 
-        /* প্রিন্ট প্রিভিউ ফিক্স */
+        /* প্রিন্টের সময় সব জুম বন্ধ করে ফুল পেজ করা */
         @media print {
             .no-print { display: none !important; }
             body { background: white; margin: 0; padding: 0; }
-            #cert-area { zoom: 1 !important; }
+            #cert-area { zoom: 1 !important; transform: scale(1) !important; }
             .cert-container { 
                 margin: 0 !important; 
                 width: 297mm !important;
@@ -98,7 +138,7 @@
 </div>
 
 <div id="cert-area">
-    <h3 style="text-align:center; margin-top:100px; color:#1a2a6c;">অনুগ্রহ করে শিক্ষার্থী নির্বাচন করুন</h3>
+    <h3 style="text-align:center; margin-top:100px; color:#1a2a6c;">অনুগ্রহ করে তালিকা থেকে শিক্ষার্থী নির্বাচন করুন</h3>
 </div>
 
 <script>
@@ -113,11 +153,11 @@
         return String(n).replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]); 
     }
 
-    // আজকের তারিখ
+    // আজকের তারিখ বাংলায়
     const today = new Date();
     const dateStr = toBn(`${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`);
 
-    // গুগল শিট থেকে ডেটা লোড
+    // গুগল শিট থেকে তথ্য নিয়ে আসা
     async function loadSheetData() {
         const select = document.getElementById('studentSelect');
         try {
@@ -131,14 +171,14 @@
                 opt.innerHTML = `রোল: ${toBn(s.roll)} - ${s.name}`;
                 select.appendChild(opt);
             });
-            // শুরুতে অটো লোড বন্ধ রাখা হয়েছে। ইউজার সিলেক্ট করলে দেখা যাবে।
+            // ডিফল্ট কোনো কন্টেন্ট শুরুতে লোড হবে না।
         } catch (error) {
-            console.error("Error:", error);
-            alert("ডেটা লোড করা সম্ভব হয়নি। শিট বা ইন্টারনেট কানেকশন চেক করুন।");
+            console.error("Error fetching data:", error);
+            alert("গুগল শিট থেকে ডেটা লোড করা সম্ভব হয়নি। শিট বা ইন্টারনেট চেক করুন।");
         }
     }
 
-    // সার্টিফিকেট টেমপ্লেট
+    // সার্টিফিকেট টেমপ্লেট ফাংশন
     function createCertHTML(s) {
         return `
         <div class="cert-container">
@@ -182,7 +222,7 @@
         </div>`;
     }
 
-    // ড্রপডাউন থেকে একক ভিউ আপডেট
+    // সিলেকশন চেঞ্জ হলে ভিউ আপডেট
     function updateCert() {
         const rollVal = document.getElementById('studentSelect').value;
         const student = studentsData.find(s => s.roll == rollVal);
@@ -191,7 +231,7 @@
         }
     }
 
-    // সবগুলো একসাথে জেনারেট করে প্রিন্ট দেওয়া
+    // সব শিক্ষার্থীর সার্টিফিকেট একসাথে জেনারেট
     function generateAll() {
         if(studentsData.length === 0) return alert("ডেটা লোড হয়নি!");
         let allHTML = "";
@@ -199,12 +239,10 @@
             allHTML += createCertHTML(s);
         });
         document.getElementById('cert-area').innerHTML = allHTML;
-        
-        // প্রিন্ট উইন্ডো খোলার আগে একটু সময় দেওয়া
         setTimeout(() => { window.print(); }, 1000);
     }
 
-    // পেজ লোড ইভেন্ট
+    // উইন্ডো লোড হলে ডেটা আনা শুরু করো
     window.addEventListener('load', loadSheetData);
 </script>
 </body>

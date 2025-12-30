@@ -51,13 +51,37 @@
 
         .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; opacity: 0.05; z-index: 0; }
         .content-wrapper { position: relative; z-index: 1; flex-grow: 1; }
+/* হেডার অংশটি ঠিক করা */
+.header { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    margin-bottom: 10px; 
+    border-bottom: 4px double #b8860b; 
+    padding-bottom: 10px;
+    width: 100%; /* পুরো উইডথ নিশ্চিত করা */
+}
 
-        .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px double #b8860b; padding-bottom: 10px; }
+/* স্কুলের তথ্যগুলো একদম মাঝখানে রাখার জন্য */
+.school-info { 
+    text-align: center; 
+    flex: 1; /* এটি মাঝখানের জায়গাটি দখল করবে */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ভেতরের সব লেখা মাঝখানে আনবে */
+}
+
+.school-info h2, .school-info h4, .school-info p {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+        /* .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px double #b8860b; padding-bottom: 10px; } */
         .logo { width: 80px; height: auto; }
-        .school-info { align-items: center;}
-        .school-info h2 { margin: 2px 0; font-size: 38px; color: #c0392b; font-weight: 700; }
+        /* .school-info { align-items: center;} */
+        /* .school-info h2 { margin: 2px 0; font-size: 38px; color: #c0392b; font-weight: 700; }
         .school-info h4 { margin: 0; font-size: 21px; color: #1a2a6c; }
-        .school-info p { margin: 2px 0; font-size: 17px; }
+        .school-info p { margin: 2px 0; font-size: 17px; } */
 
         .meta { display: flex; justify-content: space-between; margin: 15px 0; font-size: 21px; font-weight: 600; }
         .cert-title { text-align: center; margin: 10px 0; }

@@ -141,41 +141,38 @@
     const dateStr = toBn(`${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`);
 
     // শিট থেকে তথ্য সংগ্রহ
-    async function loadSheetData() {
-    const loader = document.getElementById('loader');
+    async function fetchStudents() {
+    const loadingMsg = document.getElementById('loading-msg');
     const select = document.getElementById('studentSelect');
-    loader.style.display = 'block';
-    
+    if(loadingMsg) loadingMsg.style.display = 'inline';
+
     try {
-        // রিডাইরেক্ট অটো হ্যান্ডেল করার জন্য এই সেটিংস
-        const response = await fetch(sheetURL, {
-            method: 'GET',
-            mode: 'cors', // CORS নিশ্চিত করা
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (!response.ok) throw new Error('Network response was not ok');
-
-        studentsData = await response.json();
+        // নতুন লিঙ্কটি এখানে বসান
+        const response = await fetch(sheetURL);
         
-        // ড্রপডাউন মেনু সাজানো
-        select.innerHTML = '<option value="">নির্বাচন করুন</option>';
-        studentsData.forEach(s => {
+        if (!response.ok) throw new Error('নেটওয়ার্ক সমস্যা');
+
+        const data = await response.json();
+        students = data;
+
+        // ড্রপডাউন মেনু তৈরি
+        select.innerHTML = '<option value="">শিক্ষার্থী নির্বাচন করুন</option>';
+        students.forEach(s => {
             let opt = document.createElement('option');
             opt.value = s.roll;
             opt.innerHTML = `রোল: ${toBn(s.roll)} - ${s.name}`;
             select.appendChild(opt);
         });
 
-        if(studentsData.length > 0) renderCert(studentsData[0]);
-        loader.style.display = 'none';
-        
+        // প্রথম সার্টিফিকেট দেখানো
+        if(students.length > 0) {
+            renderCert(students[0]);
+        }
+        if(loadingMsg) loadingMsg.style.display = 'none';
+
     } catch (error) {
-        console.error("ডেটা লোড এরর:", error);
-        loader.style.display = 'none';
-        alert("গুগল শিট থেকে ডেটা লোড হতে পারেনি। আপনার স্ক্রিপ্ট লিঙ্কটি 'Anyone' মুডে ডেপ্লয় করা আছে কি না নিশ্চিত হোন।");
+        console.error("Error:", error);
+        alert("ডেটা লোড করা যাচ্ছে না। আপনার গুগল স্ক্রিপ্ট লিঙ্কটি ব্রাউজারে সরাসরি ওপেন করে চেক করুন।");
     }
 }
     // সার্টিফিকেট রেন্ডার করার ফাংশন

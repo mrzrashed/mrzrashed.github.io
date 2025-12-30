@@ -8,13 +8,37 @@
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
 
         @page { size: landscape; margin: 0; }
-        body { font-family: 'Hind Siliguri', sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; }
+        @media print {
+    /* প্রিন্ট এরিয়া ঠিক করা */
+    body {
+        margin: 0;
+        padding: 0;
+        background: none;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+
+    .cert-container {
+        margin: 0 auto !important; /* মাঝখানে রাখার জন্য */
+        width: 297mm !important;   /* A4 ল্যান্ডস্কেপ এর আসল প্রস্থ */
+        height: 210mm !important;  /* A4 ল্যান্ডস্কেপ এর আসল উচ্চতা */
+        border: 15px double #b8860b !important;
+        box-shadow: none !important;
+        page-break-after: always;
+        overflow: hidden;
+    }
+}
+
+/* স্ক্রিন ভিউ ঠিক করার জন্য (আপনার আগের সমস্যা সমাধান করবে) */
+    #cert-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
         
-        .no-print { 
-            background: #1a2a6c; padding: 15px; text-align: center;
-            color: white; position: sticky; top: 0; z-index: 1000;
-            display: flex; justify-content: center; align-items: center; gap: 10px;
-        }
+        
 
         select { padding: 8px; border-radius: 5px; font-family: 'Hind Siliguri'; border: 2px solid #f39c12; min-width: 220px; }
 
@@ -23,23 +47,6 @@
         .btn-all { background: #e67e22; }
 
         /* সার্টিফিকেট ডিজাইন */
-        /* সার্টিফিকেট কন্টেইনার আপডেট */
-        .cert-container {
-        width: 285mm; 
-        height: 195mm; 
-        background: white;
-        margin: 20px auto; /* মার্জিন একটু কমানো হয়েছে */
-        border: 15px double #b8860b; 
-        padding: 30px 60px; /* প্যাডিং সামঞ্জস্য করা হয়েছে */
-        box-sizing: border-box;
-        position: relative;
-        background-image: radial-gradient(#fffdfa, #ffffff);
-        page-break-after: always;
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        
-        /* নিচের লাইনগুলো স্ক্রিন ভিউ ঠিক করবে */
-        transform-origin: top center;
-        }
         
         /* স্ক্রিনে দেখার সময় জুম লেভেল ঠিক করার জন্য (প্রিন্টে এটি কাজ করবে না) */
         @media screen and (max-width: 1200px) {

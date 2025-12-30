@@ -7,88 +7,44 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
 
-        @page {
-            size: landscape;
-            margin: 0;
-        }
-
-        body { 
-            font-family: 'Hind Siliguri', sans-serif; 
-            margin: 0; padding: 0; background-color: #f0f2f5;
-        }
+        @page { size: landscape; margin: 0; }
+        body { font-family: 'Hind Siliguri', sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; }
         
         .no-print { 
             background: #1a2a6c; padding: 15px; text-align: center;
             color: white; position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             display: flex; justify-content: center; align-items: center; gap: 10px;
         }
 
-        select { padding: 8px; border-radius: 5px; font-family: 'Hind Siliguri'; border: 2px solid #f39c12; min-width: 200px; outline: none;}
+        select { padding: 8px; border-radius: 5px; font-family: 'Hind Siliguri'; border: 2px solid #f39c12; min-width: 220px; }
 
-        .btn {
-            padding: 10px 25px; color: white; border: none; 
-            cursor: pointer; border-radius: 6px; font-family: 'Hind Siliguri'; 
-            font-weight: bold; transition: 0.3s;
-        }
+        .btn { padding: 10px 25px; color: white; border: none; cursor: pointer; border-radius: 6px; font-family: 'Hind Siliguri'; font-weight: bold; }
         .btn-print { background: #27ae60; }
         .btn-all { background: #e67e22; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-        
-        .loading-spinner {
-            border: 3px solid #f3f3f3; border-top: 3px solid #f39c12;
-            border-radius: 50%; width: 20px; height: 20px;
-            animation: spin 1s linear infinite; display: none;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* সার্টিফিকেট ডিজাইন */
         .cert-container {
-            width: 285mm; 
-            height: 195mm; 
-            background: white;
-            margin: 30px auto;
-            border: 15px double #b8860b; 
-            padding: 40px 70px;
-            box-sizing: border-box;
-            position: relative;
-            background-image: radial-gradient(#fffdfa, #ffffff);
+            width: 285mm; height: 195mm; background: white; margin: 30px auto;
+            border: 15px double #b8860b; padding: 40px 70px; box-sizing: border-box;
+            position: relative; background-image: radial-gradient(#fffdfa, #ffffff);
             page-break-after: always;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        .watermark {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%); width: 320px;
-            opacity: 0.05; z-index: 0;
-        }
-
+        .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; opacity: 0.05; z-index: 0; }
         .content-wrapper { position: relative; z-index: 1; }
 
-        .header { 
-            display: flex; align-items: center; justify-content: space-between; 
-            margin-bottom: 12px; border-bottom: 3px double #b8860b; padding-bottom: 12px; 
-        }
-
+        .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; border-bottom: 3px double #b8860b; padding-bottom: 12px; }
         .logo { width: 80px; height: auto; }
         .school-info { text-align: center; flex: 1; }
         .school-info h2 { margin: 2px 0; font-size: 32px; color: #c0392b; font-weight: 700; }
         .school-info h4 { margin: 0; font-size: 19px; color: #1a2a6c; }
-        .school-info p { margin: 2px 0; font-size: 16px; font-weight: 600; color: #34495e; }
+        .school-info p { margin: 2px 0; font-size: 16px; font-weight: 600; }
 
         .meta { display: flex; justify-content: space-between; margin: 20px 0; font-size: 19px; font-weight: 600; }
-        
         .cert-title { text-align: center; margin: 20px 0; }
-        .cert-title span { 
-            background: #1a2a6c; color: white; padding: 6px 55px; 
-            font-size: 28px; border-radius: 8px; font-weight: bold;
-        }
+        .cert-title span { background: #1a2a6c; color: white; padding: 6px 55px; font-size: 28px; border-radius: 8px; font-weight: bold; }
 
-        .main-content { 
-            font-size: 23px; line-height: 2.1; margin-top: 25px; 
-            text-align: justify; color: #2c3e50;
-        }
-
+        .main-content { font-size: 23px; line-height: 2.1; margin-top: 25px; text-align: justify; color: #2c3e50; }
         .fill { border-bottom: 2px dotted #444; display: inline-block; padding: 0 8px; font-weight: 700; color: #000; }
 
         .footer { margin-top: 50px; display: flex; justify-content: flex-end; }
@@ -97,24 +53,17 @@
 
         @media print {
             .no-print { display: none; }
-            body { background: white; margin: 0; }
-            .cert-container { 
-                margin: 0 !important; 
-                border: 15px double #b8860b !important;
-                width: 100%;
-                height: 100vh;
-                box-shadow: none;
-            }
+            body { background: white; }
+            .cert-container { margin: 0 !important; width: 100%; height: 100vh; box-shadow: none; }
         }
     </style>
 </head>
 <body>
 
 <div class="no-print">
-    <div id="loader" class="loading-spinner"></div>
     <strong>শিক্ষার্থী তালিকা:</strong>
     <select id="studentSelect" onchange="updateCert()">
-        <option value="">লোডিং হচ্ছে...</option>
+        <option value="">ডেটা লোড হচ্ছে...</option>
     </select>
     <button class="btn btn-print" onclick="window.print()">প্রিন্ট করুন</button>
     <button class="btn btn-all" onclick="generateAll()">সবগুলো একসাথে PDF করুন</button>
@@ -124,58 +73,43 @@
     </div>
 
 <script>
-    // আপনার দেওয়া গুগল শিট API লিঙ্ক
-    const sheetURL = "https://script.google.com/macros/s/AKfycby3q0uvh4Bf-5S07L4wlJgIPzDwPKH8bZS5ZavAnXxTWu_oJziM2o9_8h_nLVmLaMUQZQ/exec";
-    
+    // আপনার গুগল অ্যাপস স্ক্রিপ্ট লিঙ্ক
+    const sheetURL = "https://script.google.com/macros/s/AKfycbzMkBGQDhWiogr2Xy4axVNwDES5bSi0EeBDXNgv3Qvb7POhmAYeBqUln3iUhumwYFLlUQ/exec";
 
     let studentsData = [];
 
-    // সংখ্যাকে বাংলায় রূপান্তর
     function toBn(n) { 
         if(!n) return "";
         return String(n).replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]); 
     }
 
-    // আজকের তারিখ (বাংলায়)
     const today = new Date();
     const dateStr = toBn(`${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`);
 
-    // শিট থেকে তথ্য সংগ্রহ
-    async function fetchStudents() {
-    const loadingMsg = document.getElementById('loading-msg');
-    const select = document.getElementById('studentSelect');
-    if(loadingMsg) loadingMsg.style.display = 'inline';
+    // এই ফাংশনটি গুগল শিট থেকে ডেটা নিয়ে আসবে
+    async function loadSheetData() {
+        const select = document.getElementById('studentSelect');
+        try {
+            const response = await fetch(sheetURL);
+            studentsData = await response.json();
+            
+            select.innerHTML = '<option value="">শিক্ষার্থী নির্বাচন করুন</option>';
+            studentsData.forEach(s => {
+                let opt = document.createElement('option');
+                opt.value = s.roll;
+                opt.innerHTML = `রোল: ${toBn(s.roll)} - ${s.name}`;
+                select.appendChild(opt);
+            });
 
-    try {
-        // নতুন লিঙ্কটি এখানে বসান
-        const response = await fetch(sheetURL);
-        
-        if (!response.ok) throw new Error('নেটওয়ার্ক সমস্যা');
-
-        const data = await response.json();
-        students = data;
-
-        // ড্রপডাউন মেনু তৈরি
-        select.innerHTML = '<option value="">শিক্ষার্থী নির্বাচন করুন</option>';
-        students.forEach(s => {
-            let opt = document.createElement('option');
-            opt.value = s.roll;
-            opt.innerHTML = `রোল: ${toBn(s.roll)} - ${s.name}`;
-            select.appendChild(opt);
-        });
-
-        // প্রথম সার্টিফিকেট দেখানো
-        if(students.length > 0) {
-            renderCert(students[0]);
+            if(studentsData.length > 0) {
+                renderCert(studentsData[0]);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("ডেটা লোড করতে ব্যর্থ হয়েছে। নিশ্চিত করুন গুগল স্ক্রিপ্টে Anyone এক্সেস দেওয়া আছে।");
         }
-        if(loadingMsg) loadingMsg.style.display = 'none';
-
-    } catch (error) {
-        console.error("Error:", error);
-        alert("ডেটা লোড করা যাচ্ছে না। আপনার গুগল স্ক্রিপ্ট লিঙ্কটি ব্রাউজারে সরাসরি ওপেন করে চেক করুন।");
     }
-}
-    // সার্টিফিকেট রেন্ডার করার ফাংশন
+
     function createCertHTML(s) {
         return `
         <div class="cert-container">
@@ -232,14 +166,13 @@
     function generateAll() {
         if(studentsData.length === 0) return alert("ডেটা লোড হয়নি!");
         let allHTML = "";
-        studentsData.forEach(s => {
-            allHTML += createCertHTML(s);
-        });
+        studentsData.forEach(s => { allHTML += createCertHTML(s); });
         document.getElementById('cert-area').innerHTML = allHTML;
         setTimeout(() => { window.print(); }, 1000);
     }
 
-    window.onload = loadSheetData;
+    // পেজ লোড হওয়ার সাথে সাথে ডেটা নিয়ে আসবে
+    window.addEventListener('load', loadSheetData);
 </script>
 </body>
 </html>

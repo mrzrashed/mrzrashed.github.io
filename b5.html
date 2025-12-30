@@ -13,7 +13,7 @@
         }
 
         body { 
-            font-family: 'Nikosh', 'NikoshBan', 'Hind Siliguri', sans-serif; 
+            font-family: 'NikoshBan', 'Hind Siliguri', sans-serif; 
             margin: 0; padding: 0; background-color: #f0f2f5;
         }
         
@@ -51,31 +51,31 @@
 
         .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; opacity: 0.05; z-index: 0; }
         .content-wrapper { position: relative; z-index: 1; flex-grow: 1; }
-/* হেডার অংশটি ঠিক করা */
-.header { 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    margin-bottom: 10px; 
-    border-bottom: 4px double #b8860b; 
-    padding-bottom: 10px;
-    width: 100%; /* পুরো উইডথ নিশ্চিত করা */
-}
-
-/* স্কুলের তথ্যগুলো একদম মাঝখানে রাখার জন্য */
-.school-info { 
-    text-align: center; 
-    flex: 1; /* এটি মাঝখানের জায়গাটি দখল করবে */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* ভেতরের সব লেখা মাঝখানে আনবে */
-}
-
-.school-info h2, .school-info h4, .school-info p {
-    margin: 0;
-    width: 100%;
-    text-align: center;
-}
+        /* হেডার অংশটি ঠিক করা */
+        .header { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            margin-bottom: 10px; 
+            border-bottom: 4px double #b8860b; 
+            padding-bottom: 10px;
+            width: 100%; /* পুরো উইডথ নিশ্চিত করা */
+        }
+        
+        /* স্কুলের তথ্যগুলো একদম মাঝখানে রাখার জন্য */
+        .school-info { 
+            text-align: center; 
+            flex: 1; /* এটি মাঝখানের জায়গাটি দখল করবে */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* ভেতরের সব লেখা মাঝখানে আনবে */
+        }
+        
+        .school-info h2, .school-info h4, .school-info p {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+        }
         /* .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 4px double #b8860b; padding-bottom: 10px; } */
         .logo { width: 80px; height: auto; }
         /* .school-info { align-items: center;} */
@@ -190,11 +190,11 @@
                 </div>
                 <div class="cert-title"><span>প্রত্যয়নপত্র</span></div>
                 <div class="main-content">
-                    এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, <span class="fill" style="min-width: 380px;">${s.name}</span>, 
-                    পিতা: <span class="fill" style="min-width: 250px;">${s.father}</span>, 
-                    মাতা: <span class="fill" style="min-width: 250px;">${s.mother}</span>। 
-                    তাহার জন্ম তারিখ: <span class="fill" style="min-width: 150px;">${formatBirthDate(s.dob)}</span>, 
-                    রোল নং: <span class="fill" style="min-width: 60px;">${toBn(s.roll)}</span>। 
+                    এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, <span class="fill">${s.name}</span>, 
+                    পিতা: <span class="fill" >${s.father}</span>, 
+                    মাতা: <span class="fill" >${s.mother}</span>। 
+                    তাহার জন্ম তারিখ: <span class="fill" >${formatBirthDate(s.dob)}</span>, 
+                    রোল নং: <span class="fill">${toBn(s.roll)}</span>। 
                     সে এই বিদ্যালয়ে <span class="fill">২০২৫</span> শিক্ষাবর্ষে <span class="fill">৫ম শ্রেণি</span>তে নিয়মিত অধ্যয়ন করেছে। তাহার স্বভাব ও চরিত্র প্রশংসনীয়। <br>
                     আমি তাহার সর্বাঙ্গীন সাফল্য ও উজ্জ্বল ভবিষ্যৎ কামনা করি।
                 </div>
